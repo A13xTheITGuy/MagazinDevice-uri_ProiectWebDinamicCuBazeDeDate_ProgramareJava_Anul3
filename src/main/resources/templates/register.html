@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Register</title>
+</head>
+<body>
+
+<style>
+    .registerContainer {
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+    	height: 75%;
+    	flex-direction: column;
+    }
+    
+    form input {
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class = "registerContainer">
+	<h2>Sign In ( as USER )</h2>
+
+	<div th:if="${regError}">
+	    <p th:text="${regError}" style="color:red"></p>
+	</div>
+	
+	<div th:if="${regSuccess}">
+	    <p th:text="${regSuccess}" style="color:green"></p>
+	</div>
+	
+	<form th:action="@{/register}" method="post" th:object="${user}">
+		<input type="text" th:field="*{nume}" placeholder="Nume" required><br>
+		<input type="text" th:field="*{username}" placeholder="Username" required><br>
+		<input type="password" th:field="*{parola}" placeholder="Parola" required><br>
+		<button type="submit" class="btn btn-primary">Register</button>
+	</form>
+	<a th:href="@{/login}">Already have an account? Login</a>
+</div>
+</body>
+</html>
